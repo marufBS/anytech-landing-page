@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.my-font {
+    font-family: "Montserrat", serif;
+}
+
+
+
+/* Medium screens (≥768px, equivalent to Tailwind's md:) */
+@media (max-width: 1024px) {
+    .clip-path-img {
+        clip-path: polygon(0 11%, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+/* Large screens (≥1024px, equivalent to Tailwind's lg:) */
+@media (min-width: 1025px) {
+    .clip-path-img {
+        clip-path: polygon(64% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .clip-path-container {
+        clip-path: polygon(0 0, 100% 0, 100% 91%, 0 100%);
+    }
+}
