@@ -77,33 +77,36 @@ const Technology = () => {
   ]
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="text-center font-semibold my-10">
-        <p className="text-[#1F86F0] text-xl">TECHNOLOGY BUILT FOR YOU</p>
-        <h1 className="text-[#0B305B] text-5xl">The future of finance</h1>
+      <div className="text-center font-semibold my-10 space-y-5">
+        <p className="text-[#1F86F0] text-sm md:text-xl">TECHNOLOGY BUILT FOR YOU</p>
+        <h1 className="text-[#0B305B] text-4xl md:text-5xl">The future of finance</h1>
       </div>
       {/* Custom Slide Control Buttons */}
-      <div className="flex gap-3">
+      <div className="hidden md:flex gap-3">
         {
           Slides.map((slide, idx) => (
-            <Button className={`${activeIndex === idx ? 'bg-red-400' : 'bg-red-200'}`} onClick={() => goToSlide(idx)} color="gray">{slide.buttonText}</Button>
+            <Button size="xl" key={idx} className={`rounded-full ${activeIndex === idx ? 'bg-blue-300' : 'bg-transparent border-0'}`} onClick={() => goToSlide(idx)} color="gray">{slide.buttonText}</Button>
           ))
         }
       </div>
 
       {/* Flowbite Carousel */}
-      <div ref={carouselRef} className="w-full max-w-5xl h-96 shadow-2xl rounded-2x">
+      <div ref={carouselRef} className="w-full max-w-5xl h-[800px] md:h-[500px] shadow-2xl rounded-2xl">
         <Carousel slide={false} indicators=' ' leftControl=" " rightControl=' '>
           {
             Slides.map((slide, idx) => (
-              <div className=" h-full grid grid-cols-2 gap-5 p-10">
-                <div className="my-auto">
-                  <p>{slide.tagline}</p>
-                  <h1>{slide.title}</h1>
-                  <p>{slide.description_1}</p>
-                  <p>{slide.description_2}</p>
+              <div key={idx} className=" h-full grid grid-cols-1 md:grid-cols-2 gap-5 p-3 md:p-10">
+                <div className="my-auto space-y-5">
+                  <p className="font-bold text-xl text-blue-500">{slide.tagline}</p>
+                  <h1 className="font-bold text-3xl text-gray-700">{slide.title}</h1>
+                  <div className="md:hidden flex justify-center items-center ">
+                    <img className="md:h-[350px] md:w-[400px] rounded-2xl" src={slide.image} alt="" />
+                  </div>
+                  <p className="font-semibold text-gray-700">{slide.description_1}</p>
+                  <p className="text-gray-700">{slide.description_2}</p>
                 </div>
-                <div className="flex justify-center items-center ">
-                  <img className="h-[300px] w-[400px] rounded-2xl" src={slide.image} alt="" />
+                <div className="hidden md:flex justify-center items-center ">
+                  <img className="md:h-[350px] md:w-[400px] rounded-2xl" src={slide.image} alt="" />
                 </div>
               </div>
             ))

@@ -11,10 +11,50 @@
 
 
 
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .swiper-slide {
+    width: 80%;
+  }
+  
+  .swiper-slide:nth-child(n) {
+    width: 70%;
+  }
+  
+  /* .swiper-slide:nth-child(3n) {
+    width: 30%;
+  } */
+  
+
+
 /* Medium screens (≥768px, equivalent to Tailwind's md:) */
 @media (max-width: 1024px) {
     .clip-path-img {
-        clip-path: polygon(0 11%, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+    }
+    .clip-path-container{
+        clip-path: polygon(0 0%, 100% 0, 100% 95%, 0% 100%);
     }
 }
 
@@ -25,6 +65,6 @@
     }
 
     .clip-path-container {
-        clip-path: polygon(0 0, 100% 0, 100% 91%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
     }
 }

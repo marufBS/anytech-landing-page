@@ -15,14 +15,18 @@ import trusted_logo_13 from '../assets/trusted_logo_13.webp'
 import trusted_logo_14 from '../assets/trusted_logo_14.webp'
 import trusted_logo_15 from '../assets/trusted_logo_15.webp'
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 const Trusted = () => {
   const [count, setCount] = useState(0);
   const [experience, setExperience] = useState(0)
   const [institutions, setInstitutions] = useState(0)
   const [customers, setCustomers] = useState(0)
   const experienceTarget = 20
-  const institutionsTarget = 200
-  const customersTarget = 10
+  const institutionsTarget = 40
+  const customersTarget = 200
 
   const logos = [
     trusted_logo_1,
@@ -71,24 +75,24 @@ const Trusted = () => {
 
   return (
     <div className="text-3xl font-bold">
-      <div className="flex flex-col items-center">
-        <p>TRUSTED BY THE BEST</p>
-        <div className="flex gap-10">
-          <div>
-            <h1>&gt;{experience}</h1>
-            <p>Years of Experience</p>
+      <div className="flex flex-col items-center gap-10 my-20">
+        <p className="text-blue-500 text-xl font-medium">TRUSTED BY THE BEST</p>
+        <div className="flex flex-col md:flex-row md:gap-28 w-full md:w-auto">
+          <div className="flex flex-row md:flex-col items-center justify-between border-b-2 md:border-b-0">
+            <h1 className="text-5xl md:text-7xl text-blue-500">&gt;{experience}</h1>
+            <p className="text-sm md:text-xl font-medium">Years of Experience</p>
           </div>
-          <div>
-            <h1>{institutions}+</h1>
-            <p>Financial Institutions</p>
+          <div className="flex flex-row md:flex-col items-center justify-between border-b-2 md:border-b-0">
+            <h1 className="text-5xl md:text-7xl text-blue-500">{institutions}+</h1>
+            <p className="text-sm font-medium">Financial Institutions</p>
           </div>
-          <div>
-            <h1>&gt;{customers}m</h1>
-            <p>Customers Each</p>
+          <div className="flex flex-row md:flex-col items-center justify-between border-b-2 md:border-b-0">
+            <h1 className="text-5xl md:text-7xl text-blue-500">&gt;{customers}m</h1>
+            <p className="text-sm font-medium">Customers Each</p>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-5 justify-center items-center gap-10 max-w-[70%] mx-auto">
+      <div className="hidden md:grid grid-cols-5 justify-center items-center gap-10 mx-auto">
         {
           logos.map((logo, idx) => (
             <div key={idx}>
@@ -96,6 +100,27 @@ const Trusted = () => {
             </div>
           ))
         }
+      </div>
+      {/* Swiper for logos, visible only on small screens */}
+      <div className="block md:hidden my-10">
+        <Swiper
+          slidesPerView={'auto'}
+          centeredSlides={true}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          modules={false}
+          className="mySwiper"
+        >
+          {logos.map((logo, idx) => (
+            <SwiperSlide key={idx}>
+              <div className="flex justify-center items-center">
+                <img src={logo} alt={`Trusted Logo ${idx + 1}`} className="w-full max-w-[150px]" />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
