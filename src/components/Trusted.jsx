@@ -15,8 +15,14 @@ import trusted_logo_13 from '../assets/trusted_logo_13.webp'
 import trusted_logo_14 from '../assets/trusted_logo_14.webp'
 import trusted_logo_15 from '../assets/trusted_logo_15.webp'
 
-const Trusted = ({ target = 200, duration = 2 }) => {
+const Trusted = () => {
   const [count, setCount] = useState(0);
+  const [experience, setExperience] = useState(0)
+  const [institutions, setInstitutions] = useState(0)
+  const [customers, setCustomers] = useState(0)
+  const experienceTarget = 20
+  const institutionsTarget = 200
+  const customersTarget = 10
 
   const logos = [
     trusted_logo_1,
@@ -36,41 +42,61 @@ const Trusted = ({ target = 200, duration = 2 }) => {
     trusted_logo_15
   ]
 
-  useEffect(() => {
+  const animateCounter = (target, setter, duration) => {
     let start = 0;
     let end = target;
     let range = end - start;
-    let increment = end > start ? 1 : -1;
+    let increment = range / 100;
     let current = start;
-
-    const stepDuration = duration * 1000; // Duration in milliseconds
-    const totalSteps = 100; // Divide the animation into 100 steps
-    const stepTime = stepDuration / totalSteps;
+    const stepTime = (duration * 1000) / 100;
 
     const interval = setInterval(() => {
-      current += increment * (range / totalSteps);
-      if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+      current += increment;
+      if (current >= end) {
         current = end;
         clearInterval(interval);
       }
-      setCount(Math.round(current));
+      setter(Math.round(current));
     }, stepTime);
 
-    return () => clearInterval(interval); // Cleanup on unmount
-  }, [target, duration]);
+    return () => clearInterval(interval);
+  };
+
+  useEffect(() => {
+    animateCounter(experienceTarget, setExperience, 1);
+    animateCounter(institutionsTarget, setInstitutions, 1.5);
+    animateCounter(customersTarget, setCustomers, 2);
+  }, [experienceTarget, institutionsTarget, customersTarget]);
+
 
   return (
     <div className="text-3xl font-bold">
-      {count}
-    <div className="grid grid-cols-5 justify-center items-center gap-10 max-w-[70%] mx-auto">
-      {
-        logos.map((logo,idx)=>(
-          <div key={idx}>
-            <img src={logo} alt="" />
+      <div className="flex flex-col items-center">
+        <p>TRUSTED BY THE BEST</p>
+        <div className="flex gap-10">
+          <div>
+            <h1>&gt;{experience}</h1>
+            <p>Years of Experience</p>
           </div>
-        ))
-      }
-    </div>
+          <div>
+            <h1>{institutions}+</h1>
+            <p>Financial Institutions</p>
+          </div>
+          <div>
+            <h1>&gt;{customers}m</h1>
+            <p>Customers Each</p>
+          </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-5 justify-center items-center gap-10 max-w-[70%] mx-auto">
+        {
+          logos.map((logo, idx) => (
+            <div key={idx}>
+              <img src={logo} alt="" />
+            </div>
+          ))
+        }
+      </div>
     </div>
   );
 };
