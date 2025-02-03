@@ -43,8 +43,8 @@ const Philosophy = () => {
                 <div className='md:hidden'>
                     <img src={philosophy_card_mobile} alt="" />
                 </div>
-                
-                
+
+
                 <div className="flex md:hidden">
                     <Swiper
                         slidesPerView={'auto'}
@@ -52,26 +52,27 @@ const Philosophy = () => {
                         pagination={{
                             clickable: true,
                         }}
-                        
+
                         modules={false}
                         className="mySwiper"
                     >
                         {cardData.map((card, i) => (
                             <SwiperSlide key={i}>
                                 <motion.div
-                                    initial={{ y: 100, opacity: 0 }} 
-                                    animate={{ y: 0, opacity: 1 }}   
+                                    initial={{ y: 100, opacity: 0 }}
+                                    whileInView={{ y: 0, opacity: 1 }}
                                     transition={{
-                                        duration: 0.5,                  
-                                        delay: i * 0.3,           
+                                        duration: 0.5,
+                                        delay: i * 0.2,
                                     }}
+                                    viewport={{ once: true, amount: 0.2 }}
                                     className="bg-[#F8FCFF] space-y-5 p-5 rounded-xl"
                                 >
                                     <div><img className='!w-10' src={card.logo} alt="" /></div>
                                     <div className='text-left space-y-5'>
 
-                                    <h1 className='text-2xl font-semibold'>{card.title}</h1>
-                                    <p className='font-medium'>{card.description}</p>
+                                        <h1 className='text-2xl font-semibold'>{card.title}</h1>
+                                        <p className='font-medium'>{card.description}</p>
                                     </div>
                                 </motion.div>
                             </SwiperSlide>
@@ -79,17 +80,18 @@ const Philosophy = () => {
                     </Swiper>
                 </div>
 
-                
+
                 <div className="hidden md:grid md:grid-cols-3 gap-10">
                     {cardData.map((card, i) => (
                         <motion.div
                             key={i}
-                            initial={{ y: 100, opacity: 0 }} 
-                            animate={{ y: 0, opacity: 1 }}   
+                            initial={{ y: 100, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
                             transition={{
-                                duration: 0.5,                 
-                                delay: i * 0.3,             
+                                duration: 0.5,
+                                delay: i * 0.3,
                             }}
+                            viewport={{ once: false, amount: 0.2 }} // Ensures animation triggers when 20% of the card is visible
                             className="bg-[#F8FCFF] space-y-5 p-5 rounded-xl"
                         >
                             <div><img src={card.logo} alt="" /></div>
