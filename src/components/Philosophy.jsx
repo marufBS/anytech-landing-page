@@ -91,7 +91,7 @@ const Philosophy = () => {
                                 duration: 0.5,
                                 delay: i * 0.3,
                             }}
-                            viewport={{ once: false, amount: 0.2 }} // Ensures animation triggers when 20% of the card is visible
+                            viewport={{ once: true, amount: 0.2 }} // Ensures animation triggers when 20% of the card is visible
                             className="bg-[#F8FCFF] space-y-5 p-5 rounded-xl"
                         >
                             <div><img src={card.logo} alt="" /></div>
