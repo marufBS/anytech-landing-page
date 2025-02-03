@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import trusted_logo_1 from '../assets/trusted_logo_1.webp'
 import trusted_logo_2 from '../assets/trusted_logo_2.webp'
 import trusted_logo_3 from '../assets/trusted_logo_3.webp'
@@ -19,6 +19,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import { motion, useInView } from "framer-motion";
+
 const Trusted = () => {
   const [experience, setExperience] = useState(0)
   const [institutions, setInstitutions] = useState(0)
@@ -26,6 +28,10 @@ const Trusted = () => {
   const experienceTarget = 20
   const institutionsTarget = 40
   const customersTarget = 200
+
+  const expCounterRef = useRef(null)
+
+  const isInView = useInView(expCounterRef, { once: true, margin: "-100px" });
 
   const logos = [
     trusted_logo_1,
@@ -65,21 +71,25 @@ const Trusted = () => {
     return () => clearInterval(interval);
   };
 
-  useEffect(() => {
+  const startAnimate = () => {
     animateCounter(experienceTarget, setExperience, 1);
     animateCounter(institutionsTarget, setInstitutions, 1.5);
     animateCounter(customersTarget, setCustomers, 2);
+  }
+
+  useEffect(() => {
+    startAnimate()
   }, [experienceTarget, institutionsTarget, customersTarget]);
 
 
   return (
-    <div className="text-3xl font-bold">
+    <div className="text-3xl font-bold" onMouseEnter={() => startAnimate()}>
       <div className="flex flex-col items-center gap-10 my-20">
         <p className="text-blue-500 text-xl font-medium">TRUSTED BY THE BEST</p>
-        <div className="flex flex-col md:flex-row md:gap-28 w-full md:w-auto">
+        <div className="flex flex-col md:flex-row md:gap-24 w-full md:w-auto">
           <div className="flex flex-row md:flex-col items-center justify-between border-b-2 md:border-b-0">
-            <h1 className="text-5xl md:text-7xl text-blue-500">&gt;{experience}</h1>
-            <p className="text-sm md:text-xl font-medium">Years of Experience</p>
+            <h1 className="text-5xl md:text-7xl text-blue-500" ref={expCounterRef}>&gt;{experience}</h1>
+            <p className="text-sm font-medium">Years of Experience</p>
           </div>
           <div className="flex flex-row md:flex-col items-center justify-between border-b-2 md:border-b-0">
             <h1 className="text-5xl md:text-7xl text-blue-500">{institutions}+</h1>
