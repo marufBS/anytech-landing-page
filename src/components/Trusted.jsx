@@ -20,7 +20,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 const Trusted = () => {
-  const [count, setCount] = useState(0);
   const [experience, setExperience] = useState(0)
   const [institutions, setInstitutions] = useState(0)
   const [customers, setCustomers] = useState(0)

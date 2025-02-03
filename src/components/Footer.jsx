@@ -1,6 +1,4 @@
-import React from 'react'
 import logo from '../assets/logo.svg'
-import { Button, FooterLink } from 'flowbite-react'
 import {Linkedin,Phone,Mail} from 'lucide-react'
 
 const Footer = () => {

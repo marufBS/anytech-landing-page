@@ -1,4 +1,3 @@
-import React from 'react'
 import finance_women from '../assets/finance-women.avif'
 
 const FinanceSection = () => {

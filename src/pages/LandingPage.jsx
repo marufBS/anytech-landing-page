@@ -10,7 +10,7 @@ import Navbar from '../components/NavigationBar'
 
 const LandingPage = () => {
   return (
-    <div className=''>
+    <>
       <Navbar />
       <HeroSection />
       <div className='max-w-[90%] md:max-w-[80%] mx-auto'>
@@ -21,7 +21,7 @@ const LandingPage = () => {
       </div>
       <Legacy />
       <Footer />
-    </div>
+    </>
   )
 }
 

@@ -14,7 +14,7 @@ const Technology = () => {
     if (carouselRef.current) {
       const indicators = carouselRef.current.querySelectorAll('[data-testid="carousel-indicator"]');
       if (indicators[index]) {
-        indicators[index].click(); // Simulates clicking the real indicator
+        indicators[index].click();
       }
     }
   };
@@ -28,7 +28,7 @@ const Technology = () => {
       });
     }, 5000);
 
-    return () => clearInterval(interval); // Cleanup to prevent multiple intervals
+    return () => clearInterval(interval); 
   }, []);
 
   useEffect(() => {

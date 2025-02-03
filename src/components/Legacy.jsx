@@ -1,6 +1,6 @@
 import { Button } from 'flowbite-react'
 import React, { useState } from 'react'
-import { X, Menu, ChevronDown, Globe, ChevronRight } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const Legacy = () => {
